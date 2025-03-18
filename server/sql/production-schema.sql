@@ -71,7 +71,7 @@ insert into manager (first_name, last_name, username, `password`)
             ('Jasmine', 'Jones', 'employee4', 'password4', 1),
             ('Wayne', 'Carter', 'employee5', 'password5', 2);
 
-
+select * from manager
 
 
 

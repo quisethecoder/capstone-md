@@ -1,4 +1,7 @@
 package learn.domain;
 
-public class ResultType {
+public enum ResultType {
+    SUCCESS,
+    INVALID,
+    NOT_FOUND
 }
