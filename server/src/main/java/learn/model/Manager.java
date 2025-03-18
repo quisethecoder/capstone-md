@@ -17,6 +17,10 @@ public class Manager {
         this.password = password;
     }
 
+    public Manager() {
+
+    }
+
     public int getManagerId() {
         return managerId;
     }
