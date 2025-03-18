@@ -42,20 +42,34 @@ create table schedules (
 );
 
 
+create table seats(
+seat_id int primary key auto_increment,
+seat text,
+schedule_id int,
+employee_id int,
+constraint fk_seats_schedule_id
+    foreign key (schedule_id) 
+    references schedules(schedule_id),
+constraint fk_seats_employee_id
+    foreign key (employee_id) 
+    references employee(employee_id)
+);
 
 
--- create table seats(
--- seat_id int primary key auto_increment,
--- seat text,
--- schedule_id int,
--- employee_id int,
--- constraint fk_seats_schedule_id
---     foreign key (schedule_id) 
---     references schedules(schedule_id),
--- constraint fk_seats_employee_id
---     foreign key (employee_id) 
---     references employee(employee_id)
--- );
+-- initial data
+
+insert into manager (first_name, last_name, username, `password`)
+		values
+		('Marie','Corona','testmanager1', 'manager1'),
+		('Delisha','Bobbs','testmanager2', 'manager2');
+
+	insert into employee (first_name, last_name, username, `password`, manager_id)
+			values
+			('Marquise', 'Dawkins','employee1','password1', 2),
+			('Darryl', 'Johnson', 'employee2', 'password2', 2),
+			('Justin', 'Smith', 'employee3', 'password3', 1),
+            ('Jasmine', 'Jones', 'employee4', 'password4', 1),
+            ('Wayne', 'Carter', 'employee5', 'password5', 2);
 
 
 
