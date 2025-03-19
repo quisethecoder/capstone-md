@@ -65,13 +65,29 @@ insert into manager (first_name, last_name, username, `password`)
 
 	insert into employee (first_name, last_name, username, `password`, manager_id)
 			values
-			('Marquise', 'Dawkins','employee1','password1', 2),
+			('Marquis', 'Adams','employee1','password1', 2),
 			('Darryl', 'Johnson', 'employee2', 'password2', 2),
 			('Justin', 'Smith', 'employee3', 'password3', 1),
             ('Jasmine', 'Jones', 'employee4', 'password4', 1),
             ('Wayne', 'Carter', 'employee5', 'password5', 2);
 
-select * from manager
+-- select * from manager
+
+-- select * from employee where employee_id = ?;
+
+-- select * from employee where email = ?;
+
+-- select * from employee where username = 'employee3';
+
+-- select e.employee_id, e.first_name, e.last_name, e.username, e.password, m.manager_id, m.first_name, m.last_name
+-- from employee e
+-- join manager m on e.manager_id = m.manager_id;
+
+
+-- select * 
+-- from employee e
+-- join manager m on e.manager_id = m.manager_id
+-- where e.employee_id = 1;
 
 
 
