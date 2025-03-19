@@ -6,23 +6,21 @@ public class Employee {
     private int employeeId;
     private String firstName;
     private String lastName;
+    private String username;
     private String password;
-    private Manager managerId;
+    private Manager manager;
 
-    public Employee(int employeeId, String firstName, String lastName, String password, Manager managerId) {
+    public Employee(int employeeId, String firstName, String lastName, String username, String password, Manager manager) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.password = password;
-        this.managerId = managerId;
+        this.manager = manager;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public Employee() {
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public int getEmployeeId() {
@@ -33,12 +31,28 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -49,24 +63,25 @@ public class Employee {
         this.password = password;
     }
 
-    public Manager getManagerId() {
-        return managerId;
+    public Manager getManager() {
+        return manager;
     }
 
-    public void setManagerId(Manager managerId) {
-        this.managerId = managerId;
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return employeeId == employee.employeeId && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(password, employee.password) && Objects.equals(managerId, employee.managerId);
+        return employeeId == employee.employeeId && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(username, employee.username) && Objects.equals(password, employee.password) && Objects.equals(manager, employee.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employeeId, firstName, lastName, password, managerId);
+        return Objects.hash(employeeId, firstName, lastName, username, password, manager);
     }
 }
 
