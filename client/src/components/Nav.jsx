@@ -4,23 +4,6 @@ import logo from '../assets/logo.png';
 
 export default function Nav({loggedInManager, setLoggedInManager, loggedInEmployee, setLoggedInEmployee}){
    
-//   const managerLogin =  loggedInManager
-//   const employeeLogin = loggedInEmployee
-
-//   if(managerLogin !== null){
-//     <li>
-//         <Link to={"/manager"}>
-//             Profile
-//             </Link>
-//         </li>
-//     }else if(employeeLogin !== null){
-//         <li>
-//         <Link to={"/employee"}>
-//             Profile
-//             </Link>
-//         </li>
-//     }
-   
     return(
        <header>
         <nav>
@@ -41,12 +24,12 @@ export default function Nav({loggedInManager, setLoggedInManager, loggedInEmploy
                 </li>
                 {loggedInManager === null && loggedInEmployee === null ? <>
                     <li>
-                    <Link to={"/employeesignup"}>
+                    <Link to={"/choose-route/signup"}>
                     Sign Up
                     </Link>
                 </li>
                 <li>
-                    <Link to={"/employeelogin"}>
+                    <Link to={"/choose-route/login"}>
                     Log In
                     </Link>
                 </li>
