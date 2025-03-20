@@ -1,11 +1,70 @@
 import { useState } from 'react'
-import reactLogo from './assets/logo.png'
+import {BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
+import Nav from './components/Nav'
+import ManagerForm from './components/ManagerForm'
+import ManagerLoginForm from './components/ManagerLoginForm'
+import EmployeeFormLogin from './components/EmployeeLoginForm'
+import EmployeeForm from './components/EmployeeForm'
 
 function App() {
+  const[loggedInManager, setLoggedInManager] = useState(null)
+  const[loggedInEmployee, setLoggedInEmployee] = useState(null)
+
+  const[hasFinishedCheckingLocalStorage, setHasFinishedCheckingLocalStorage] = useState(false)
+
+
+  useState(() => {
+    if (localStorage.getItem("loggedInManager") !== undefined){
+      setLoggedInManager(JSON.parse(localStorage.getItem("loggedInManager")))
+    }else if(localStorage.getItem("loggedInEmployee") !== undefined){
+      setLoggedInEmployee(JSON.parse(localStorage.getItem("loggedInEmployee")))
+    }
+    setHasFinishedCheckingLocalStorage(true)
+  }, [])
+
+  if(!hasFinishedCheckingLocalStorage){
+    return null
+  }
+
 
   return (
-    <div className='text-3xl font-bold underline'>Hi</div>
+    <Router>
+      <div>
+        <Nav loggedInManager={loggedInManager} setLoggedInManager={setLoggedInManager} loggedInEmployee={loggedInEmployee} setLoggedInEmployee={setLoggedInEmployee}/>
+        <main>
+        <Routes>
+          <Route path="/" element={<div>Home Page</div>} />
+          <Route path="/employeesignup" element={loggedInEmployee === null ? 
+            <EmployeeForm setLoggedInEmployee={setLoggedInEmployee} /> :
+            <Navigate to={"/"} />
+          }
+          />
+
+          <Route path="/employeelogin" element={loggedInEmployee === null ? 
+            <EmployeeFormLogin setLoggedInEmployee={setLoggedInEmployee} /> :
+            <Navigate to={"/"} />
+          }
+          />
+
+          <Route path="/managersignup" element={loggedInManager === null ? 
+            <ManagerForm setLoggedInManager={setLoggedInManager} /> :
+            <Navigate to={"/"} />
+          }
+          />
+
+          <Route path="/managerlogin" element={loggedInManager === null ? 
+            <ManagerLoginForm setLoggedInManager={setLoggedInManager} /> :
+            <Navigate to={"/"} />
+          }
+          />
+
+          <Route path="*" element={<div>This page does not exist</div>} />
+        </Routes>
+        </main>
+      </div>
+    </Router>
+    
   )
 }
 
