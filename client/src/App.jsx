@@ -6,6 +6,7 @@ import ManagerForm from './components/ManagerForm'
 import ManagerLoginForm from './components/ManagerLoginForm'
 import EmployeeFormLogin from './components/EmployeeLoginForm'
 import EmployeeForm from './components/EmployeeForm'
+import ChooseRoute from './components/ChooseRoute'
 
 function App() {
   const[loggedInManager, setLoggedInManager] = useState(null)
@@ -35,6 +36,9 @@ function App() {
         <main>
         <Routes>
           <Route path="/" element={<div>Home Page</div>} />
+
+          <Route path="choose-route/:choose" element={<ChooseRoute/>} />
+
           <Route path="/employeesignup" element={loggedInEmployee === null ? 
             <EmployeeForm setLoggedInEmployee={setLoggedInEmployee} /> :
             <Navigate to={"/"} />
