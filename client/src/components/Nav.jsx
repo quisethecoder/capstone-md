@@ -1,0 +1,79 @@
+import { Link } from 'react-router-dom'
+import logo from '../assets/logo.png';
+
+
+export default function Nav({loggedInManager, setLoggedInManager, loggedInEmployee, setLoggedInEmployee}){
+   
+//   const managerLogin =  loggedInManager
+//   const employeeLogin = loggedInEmployee
+
+//   if(managerLogin !== null){
+//     <li>
+//         <Link to={"/manager"}>
+//             Profile
+//             </Link>
+//         </li>
+//     }else if(employeeLogin !== null){
+//         <li>
+//         <Link to={"/employee"}>
+//             Profile
+//             </Link>
+//         </li>
+//     }
+   
+    return(
+       <header>
+        <nav>
+           <div>
+            <Link to={"/"}>
+                <img src={logo} alt="MD Scheduler" width={150} />
+            </Link>
+            <ul>
+                <li>
+                    <Link to={"/"}>
+                    Home
+                    </Link>
+                </li>
+                <li>
+                    <Link to={"/"}>
+                    Schedule
+                    </Link>
+                </li>
+                {loggedInManager === null && loggedInEmployee === null ? <>
+                    <li>
+                    <Link to={"/employeesignup"}>
+                    Sign Up
+                    </Link>
+                </li>
+                <li>
+                    <Link to={"/employeelogin"}>
+                    Log In
+                    </Link>
+                </li>
+                </> : <>
+                <li>
+                    <Link to={"/"}>
+                    Profile
+                    </Link>
+                </li>
+                <li>
+                    <Link to={"/"}>
+                    Time Off Request
+                    </Link>
+                </li>
+                <li>
+                   <button onClick={() => {
+                    setLoggedInManager(null)
+                    setLoggedInEmployee(null) 
+                    localStorage.clear("loggedInEmployee")
+                    localStorage.clear("loggedInManager")
+                }}>Log Out</button>
+                </li>
+                </>
+                }
+            </ul>
+           </div>
+        </nav>
+       </header>
+    )
+}

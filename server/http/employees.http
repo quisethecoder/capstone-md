@@ -22,7 +22,7 @@ Content-Type: application/json
     "username": "airjordan5",
     "password": "belikemike23",
     "manager": {
-        "managerId": 3
+        "managerId": 2
     }
 }
 
