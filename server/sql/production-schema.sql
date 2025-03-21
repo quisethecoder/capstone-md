@@ -99,23 +99,15 @@ insert into manager (first_name, last_name, username, `password`)
 			
 
   
--- select * from manager
+-- select sc.schedule_id, sc.schedule_date, se.seat_id, se.seat, e.employee_id, e.first_name,
+-- e.last_name, e.username, e.`password`, m.manager_id, m.first_name, m.last_name,
+-- m.username, m.`password` 
+-- from schedules sc 
+-- join employee e on e.employee_id = sc.employee_id
+-- join seats se on se.seat_id = sc.seat_id
+-- join manager m on m.manager_id = e.manager_id
+-- where sc.schedule_date = '2025-04-01';
 
--- select * from employee where employee_id = ?;
-
--- select * from employee where email = ?;
-
--- select * from employee where username = 'employee3';
-
--- select e.employee_id, e.first_name, e.last_name, e.username, e.password, m.manager_id, m.first_name, m.last_name
--- from employee e
--- join manager m on e.manager_id = m.manager_id;
-
-
--- select * 
--- from employee e
--- join manager m on e.manager_id = m.manager_id
--- where e.employee_id = 1;
 
 
 
