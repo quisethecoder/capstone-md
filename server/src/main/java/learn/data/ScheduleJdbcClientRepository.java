@@ -121,7 +121,7 @@ public class ScheduleJdbcClientRepository implements ScheduleRepository {
     public boolean update(Schedule schedule) {
         final String sql = """
                 update schedules set
-                schedule_date = ?,
+                schedule_date = ?
                 where schedule_id = ?;
                 """;
 

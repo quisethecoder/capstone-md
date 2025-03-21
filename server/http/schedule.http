@@ -1,0 +1,143 @@
+GET http://localhost:8080/api/schedule
+
+
+###
+#happy path seat by id
+GET http://localhost:8080/api/schedule/1
+
+
+###
+#manager doesn't exist
+GET http://localhost:8080/api/schedule/999
+
+
+###
+#find dates by employee
+GET http://localhost:8080/api/schedule/employee/2
+
+
+###
+#find dates by employee
+GET http://localhost:8080/api/schedule/date/2025-04-10
+
+
+###
+#happy path
+#come back to this some fields are showing null
+POST http://localhost:8080/api/schedule
+Content-Type: application/json
+
+{
+    "scheduleDate": "2025-04-02",
+    "employee": {
+        "employeeId": 5
+    },
+    "seat": {
+        "seatId": 5
+    }
+
+}
+
+
+###
+#blank schedule
+POST http://localhost:8080/api/schedule
+Content-Type: application/json
+
+{
+    "scheduleDate": "",
+    "employee": {
+        "employeeId": 3
+    },
+    "seat": {
+        "seatId": 5
+    }
+}
+
+###
+#duplicate employee on schedule
+POST http://localhost:8080/api/schedule
+Content-Type: application/json
+
+{
+    "scheduleDate": "2025-04-02",
+    "employee": {
+        "employeeId": 5
+    },
+    "seat": {
+        "seatId": 5
+    }
+}
+
+###
+#employee does not exist
+POST http://localhost:8080/api/schedule
+Content-Type: application/json
+
+{
+    "scheduleDate": "2025-04-02",
+    "employee": {
+        "employeeId": 99
+    },
+    "seat": {
+        "seatId": 5
+    }
+}
+
+
+###
+#seat does not exist
+POST http://localhost:8080/api/schedule
+Content-Type: application/json
+
+{
+    "scheduleDate": "2025-04-02",
+    "employee": {
+        "employeeId": 1
+    },
+    "seat": {
+        "seatId": 99
+    }
+}
+
+###
+#Happy Path
+PUT http://localhost:8080/api/schedule/4  HTTP/1.1
+Content-Type: application/json
+
+{
+    "scheduleDate": "2025-04-04",
+    "employee": {
+        "employeeId": 1
+    },
+    "seat": {
+        "seatId": 2
+    }
+
+}
+
+###
+#Cannot leave date empty
+PUT http://localhost:8080/api/schedule/5  HTTP/1.1
+Content-Type: application/json
+
+{
+    "scheduleDate": "",
+    "employee": {
+        "employeeId": 1
+    },
+    "seat": {
+        "seatId": 2
+    }
+
+}
+
+
+###
+#Happy path
+DELETE http://localhost:8080/api/schedule/1
+
+
+###
+#Does not exist
+DELETE http://localhost:8080/api/schedule/99
