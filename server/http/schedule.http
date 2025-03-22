@@ -28,7 +28,7 @@ POST http://localhost:8080/api/schedule
 Content-Type: application/json
 
 {
-    "scheduleDate": "2025-03-21",
+    "scheduleDate": "2025-03-23",
     "employee": {
         "employeeId": 5
     },

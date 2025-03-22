@@ -48,7 +48,7 @@ public class ScheduleService {
         List<Schedule> schedules = repository.findByDate(schedule.getScheduleDate());
         for(Schedule s : schedules){
             if(s.getSeat().getSeatId() == schedule.getSeat().getSeatId()){
-                result.addErrorMessage("Seat is already scheduled for that date", ResultType.INVALID);
+                result.addErrorMessage("Seat is already taken for that date", ResultType.INVALID);
             }
         }
 
