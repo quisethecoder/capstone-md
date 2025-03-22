@@ -18,7 +18,7 @@ GET http://localhost:8080/api/schedule/employee/2
 
 ###
 #find dates by employee
-GET http://localhost:8080/api/schedule/date/2025-04-10
+GET http://localhost:8080/api/schedule/date/2025-03-21
 
 
 ###
@@ -28,12 +28,12 @@ POST http://localhost:8080/api/schedule
 Content-Type: application/json
 
 {
-    "scheduleDate": "2025-04-02",
+    "scheduleDate": "2025-03-21",
     "employee": {
         "employeeId": 5
     },
     "seat": {
-        "seatId": 5
+        "seatId": 2
     }
 
 }

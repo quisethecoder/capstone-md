@@ -44,20 +44,12 @@ public class ScheduleService {
     public Result<Schedule> create(Schedule schedule){
         Result<Schedule> result = new Result<>();
 
-        List<Schedule> schedules = repository.findAll();
-        int employeeCount = 0;
-        int seatCount = 0;
+        //Check if there is already employee scheduled for that date with the same seat
+        List<Schedule> schedules = repository.findByDate(schedule.getScheduleDate());
         for(Schedule s : schedules){
-            if(s.getEmployee().getEmployeeId() == schedule.getEmployee().getEmployeeId()){
-                employeeCount++;
-            }
             if(s.getSeat().getSeatId() == schedule.getSeat().getSeatId()){
-                seatCount++;
+                result.addErrorMessage("Seat is already scheduled for that date", ResultType.INVALID);
             }
-        }
-
-        if(employeeCount >= seatCount){
-            result.addErrorMessage("Cannot have more employees than seats", ResultType.INVALID);
         }
 
         if(schedule.getEmployee() == null){
