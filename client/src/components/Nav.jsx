@@ -18,7 +18,7 @@ export default function Nav({loggedInManager, setLoggedInManager, loggedInEmploy
                     </Link>
                 </li>
                 <li>
-                    <Link to={"/"}>
+                    <Link to={"/schedule"}>
                     Schedule
                     </Link>
                 </li>

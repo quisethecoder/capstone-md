@@ -8,6 +8,7 @@ import EmployeeFormLogin from './components/EmployeeLoginForm'
 import EmployeeForm from './components/EmployeeForm'
 import ChooseRoute from './components/ChooseRoute'
 import Home from './components/Home'
+import Schedule from './components/Schedule'
 
 function App() {
   const[loggedInManager, setLoggedInManager] = useState(null)
@@ -37,6 +38,7 @@ function App() {
         <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/schedule" element={<Schedule />} />
 
           <Route path="choose-route/:choose" element={<ChooseRoute/>} />
 
