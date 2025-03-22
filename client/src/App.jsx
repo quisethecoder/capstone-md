@@ -7,6 +7,7 @@ import ManagerLoginForm from './components/ManagerLoginForm'
 import EmployeeFormLogin from './components/EmployeeLoginForm'
 import EmployeeForm from './components/EmployeeForm'
 import ChooseRoute from './components/ChooseRoute'
+import Home from './components/Home'
 
 function App() {
   const[loggedInManager, setLoggedInManager] = useState(null)
@@ -35,7 +36,7 @@ function App() {
         <Nav loggedInManager={loggedInManager} setLoggedInManager={setLoggedInManager} loggedInEmployee={loggedInEmployee} setLoggedInEmployee={setLoggedInEmployee}/>
         <main>
         <Routes>
-          <Route path="/" element={<div>Home Page</div>} />
+          <Route path="/" element={<Home />} />
 
           <Route path="choose-route/:choose" element={<ChooseRoute/>} />
 
