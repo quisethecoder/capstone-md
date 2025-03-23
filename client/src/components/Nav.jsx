@@ -1,8 +1,33 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png';
+import { useEffect, useState } from 'react';
 
 
 export default function Nav({loggedInManager, setLoggedInManager, loggedInEmployee, setLoggedInEmployee}){
+    const [darkMode, setDarkMode] = useState(false)
+
+    useEffect(() => {
+        const storedPreference = localStorage.getItem("darkMode")
+        if(storedPreference === "true"){
+            setDarkMode(true)
+            document.documentElement.classList.add("dark")
+        }else{
+            setDarkMode(false)
+            document.documentElement.classList.remove("dark")
+        }
+    }, [])
+
+    const toggleDarkMode = () => {
+        if(darkMode){
+            document.documentElement.classList.remove("dark")
+            localStorage.setItem("darkMode", "false")
+            setDarkMode(false)
+        }else{
+            document.documentElement.classList.add("dark")
+            localStorage.setItem("darkMode", "true")
+            setDarkMode(true)
+        }
+    }
    
     return(
        <header>
@@ -35,7 +60,7 @@ export default function Nav({loggedInManager, setLoggedInManager, loggedInEmploy
                 </li>
                 </> : <>
                 <li>
-                    <Link to={"/"}>
+                    <Link to={"profile"}>
                     Profile
                     </Link>
                 </li>
@@ -56,6 +81,7 @@ export default function Nav({loggedInManager, setLoggedInManager, loggedInEmploy
                 }
             </ul>
            </div>
+           {/* <button onClick={toggleDarkMode} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300" >{darkMode ? "Light Mode" : "Dark Mode"}</button> */}
         </nav>
        </header>
     )

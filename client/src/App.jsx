@@ -9,6 +9,8 @@ import EmployeeForm from './components/EmployeeForm'
 import ChooseRoute from './components/ChooseRoute'
 import Home from './components/Home'
 import Schedule from './components/Schedule'
+import EmployeeProfile from './components/EmployeeProfile'
+import ManagerProfile from './components/ManagerProfile'
 
 function App() {
   const[loggedInManager, setLoggedInManager] = useState(null)
@@ -39,7 +41,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/schedule" element={<Schedule />} />
-
+          <Route path="profile" element={loggedInManager ? (
+            <ManagerProfile loggedInManager={loggedInManager} />
+          ) : loggedInEmployee ? (
+            <EmployeeProfile loggedInEmployee={loggedInEmployee}/>
+          ) : ( 
+            <Navigate to="/" />
+          )
+          } />
           <Route path="choose-route/:choose" element={<ChooseRoute/>} />
 
           <Route path="/employeesignup" element={loggedInEmployee === null ? 
