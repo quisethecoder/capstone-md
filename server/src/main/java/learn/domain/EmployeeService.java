@@ -29,6 +29,10 @@ public class EmployeeService {
         return repository.findById(employeeId);
     }
 
+    public List<Employee> findEmployeesByManagerId(int managerId){
+        return repository.findEmployeesByManagerId(managerId);
+    }
+
     public Result<Employee> findByUsername(String username){
         Result<Employee> result = new Result<>();
         Employee foundEmployee = repository.findByUsername(username);
@@ -74,6 +78,14 @@ public class EmployeeService {
 
         return result;
 
+    }
+
+    public Result<Void> deleteById(int employeeId){
+        Result<Void> result = new Result<>();
+        if(!repository.deleteById(employeeId)){
+            result.addErrorMessage("Could not find employee with that id", ResultType.NOT_FOUND);
+        }
+        return result;
     }
 
 }

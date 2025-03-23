@@ -1,3 +1,4 @@
+import ManagerListOfEmployees from "./ManagerListOfEmployees"
 
 
 export default function ManagerProfile({loggedInManager}){
@@ -7,6 +8,8 @@ export default function ManagerProfile({loggedInManager}){
     }
 
     return(
-        <div>Manager profile is a work in progress</div>
+        <div>Manager profile is a work in progress
+            <ManagerListOfEmployees />
+        </div>
     )
 }

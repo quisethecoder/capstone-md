@@ -3,6 +3,7 @@ package learn.data;
 
 import learn.model.Employee;
 import learn.model.Manager;
+import learn.model.Schedule;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -30,6 +31,25 @@ public class EmployeeJdbcClientRepository implements EmployeeRepository{
                 """;
 
         return client.sql(sql)
+                .query(new EmployeeMapper())
+                .list();
+    }
+
+    @Override
+    public List<Employee> findEmployeesByManagerId(int managerId) {
+        final String sql = """
+                select sc.schedule_id, sc.schedule_date, se.seat_id, se.seat, e.employee_id, e.first_name,
+                e.last_name, e.username, e.`password`, m.manager_id, m.first_name, m.last_name,
+                m.username, m.`password`
+                from schedules sc
+                join employee e on e.employee_id = sc.employee_id
+                join seats se on se.seat_id = sc.seat_id
+                join manager m on m.manager_id = e.manager_id
+                where m.manager_id = ?;
+                """;
+
+        return client.sql(sql)
+                .param(managerId)
                 .query(new EmployeeMapper())
                 .list();
     }
@@ -92,5 +112,19 @@ public class EmployeeJdbcClientRepository implements EmployeeRepository{
         employee.setEmployeeId(employeeId);
         return employee;
 
+    }
+
+    @Override
+    public boolean deleteById(int employeeId) {
+        final String sql = """
+                delete from employee
+                where employee_id = ?
+                """;
+
+        int rowsAffected = client.sql(sql)
+                .param(employeeId)
+                .update();
+
+        return rowsAffected > 0;
     }
 }
