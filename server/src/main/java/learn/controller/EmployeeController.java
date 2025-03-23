@@ -42,6 +42,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
+    @GetMapping("/manager/{id}")
+    public List<Employee> findEmployeesByManagerId(@PathVariable int id){
+        return service.findEmployeesByManagerId(id);
+    }
+
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Employee employee){
         Result<Employee> result = service.create(employee);
@@ -72,6 +77,18 @@ public class EmployeeController {
             return new ResponseEntity<>(List.of("Username and password do not match"), HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id){
+        Result<Void> result = service.deleteById(id);
+
+        if(result.isSuccess()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 
     private Map<String, String> createJwtFromEmployee(Employee employee){
