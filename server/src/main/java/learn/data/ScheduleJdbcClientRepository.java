@@ -84,7 +84,7 @@ public class ScheduleJdbcClientRepository implements ScheduleRepository {
                 join employee e on e.employee_id = sc.employee_id
                 join seats se on se.seat_id = sc.seat_id
                 join manager m on m.manager_id = e.manager_id
-                where sc.schedule_date = ?;
+                where sc.schedule_date = ? order by se.seat_id;
                 """;
 
         return client.sql(sql)
