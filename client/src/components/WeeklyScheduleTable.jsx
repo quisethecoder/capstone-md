@@ -6,10 +6,23 @@ function getLocalDateString(date){
 }
 
 function formatDate(date){
-    const month = (date.getMonth() + 1).toString().padStart(2,"0")
+    const month = (date.getMonth() + 1).toString()
     const day = date.getDate().toString().padStart(2,"0")
     const year = date.getFullYear()
     return `${month}-${day}-${year}`
+}
+
+function getDaySuffix(day){
+    if(day >= 11 && day <= 13){
+        return "TH"
+    }
+
+    switch(day % 10){
+        case 1: return "ST";
+        case 2: return "ND";
+        case 3: return "RD";
+        default: return "TH";
+    }
 }
 
 
@@ -52,27 +65,48 @@ export default function WeeklyScheduleTable(){
 
 
     return(
-        <div className="p-4">
-            <h1 className="test-2xl font-bold mb-4">{monthHeader}</h1>
-            <div className="flex justify-between space-x-4">
-                {weeklySchedules.map((dayData, index) => (
-                <div key={index} className="border border-blue-300 p-4 flex-1 mx-2">
-                    <h3 className="text-xl font-semibold">{dayData.date.getDate()}</h3>
-                    <p className="text-gray-500">{dayData.date.toLocaleDateString("en-US", {weekday: "long"})}</p>
-                    <ul className="mt-2">
-                        {dayData.schedules.length > 0 ? (
-                            dayData.schedules.map((schedule) => (
-                            <li key={schedule.scheduleId}>
-                                {schedule.employee.firstName} {schedule.employee.lastName} Seat: {" "} {schedule.seat.seat}
-                            </li>
-                            ))
-                        ) : (
-                            <li>No employees scheduled.</li>
-                        )}
-                    </ul>
-                </div>
-                ))}
+        <div className="p-4 bg-blue-50 mt-5 cursor-default">
+            <h1 className="text-7xl font-bold ml-3 text-blue-900">{monthHeader}</h1>
 
+            <div className="grid grid-cols-5 gap-4">
+                {weeklySchedules.map((dayData, index) => {
+                    const dayNumber = dayData.date.getDate()
+                    const daySuffix = getDaySuffix(dayNumber)
+                    const dayName = dayData.date.toLocaleDateString("en-us", {
+                        weekday: "long",
+                    })
+
+
+                    return(
+                        <div key={index} className="p-4">
+                            <div className="text-7xl font-extrabold text-blue-900">
+                                {dayNumber}
+                                <span className="text-lg align-bottom ml-1">{daySuffix}</span>
+                            </div>
+                            <div className="text-sm font-semibold text-gray-700 uppercase">
+                                {dayName}
+                            </div>
+                            <div className="mt-4 space-y-2">
+                                {dayData.schedules.length > 0 ? (
+                                    dayData.schedules.map((schedule) => (
+                                        <div key={schedule.scheduleId} className="flex flex-col ">
+                                            <div className="text-sm font-medium text-gray-800">
+                                                {schedule.employee.firstName} {schedule.employee.lastName}
+                                            </div>
+                                            <div className="text-xs text-gray-600">
+                                                Seat: {schedule.seat.seat}
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="text-sm text-gray-500">
+                                        No employees scheduled.
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

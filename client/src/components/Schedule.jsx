@@ -37,7 +37,7 @@ export default function Schedule() {
     const [modalOpen, setModalOpen] = useState(false)
     const [modalContent, setModalContent] = useState(null)
 
-    const totalSeats = 3
+    const totalSeats = 5
 
     useEffect(() => {
         fetch("http://localhost:8080/api/schedule")
@@ -80,7 +80,7 @@ export default function Schedule() {
             : "No employees scheduled"
 
         return (
-            <div key={index} className="p-2 border border-gray-200 relative cursor-pointer hover:bg-gray-100 min-h-[70px]" onClick={() => handleDayClick(date)} title={tooltipText}>
+            <div key={index} className="p-2 border border-gray-200 relative cursor-pointer hover:bg-blue-100 min-h-[70px]" onClick={() => handleDayClick(date)} title={tooltipText}>
                 <div className="text-sm font-semibold">{date.getDate()}</div>
                 <div title={tooltipText} className={`w-3 h-3 rounded-full ${dotColor} animate-pulse absolute bottom-1 right-1`}></div>
             </div>
@@ -96,8 +96,8 @@ export default function Schedule() {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="w-full max-w-4xl p-4 bg-white shadow-lg rounded">
+        <div className="min-h-screen flex items-center justify-center bg-white-100">
+            <div className="w-full max-w-4xl p-4 bg-blue-200 shadow-lg rounded">
                 <h1 className="text-2xl font-bold text-center mb-4">
                     {today.toLocaleDateString("default", {month: "long"})} {year}
                 </h1>
