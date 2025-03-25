@@ -96,8 +96,8 @@ export default function Schedule() {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-white-100">
-            <div className="w-full max-w-4xl p-4 bg-blue-200 shadow-lg rounded">
+        <div className="min-h-screen flex items-center justify-center bg-blue-50 pb-20 pt-15">
+            <div className="w-full max-w-4xl p-4 bg-indigo-200 shadow-lg rounded">
                 <h1 className="text-2xl font-bold text-center mb-4">
                     {today.toLocaleDateString("default", {month: "long"})} {year}
                 </h1>
@@ -114,7 +114,7 @@ export default function Schedule() {
                 {modalOpen && modalContent && (
                     <div className="fixed inset-0 flex items-center justify-center z-50">
                         <div className="absolute inset-0 bg-black opacity-50" onClick={() => setModalOpen(false)}></div>
-                        <div className="bg-white p-4 rounded shadow-lg z-50 transform transition-all duration-300 max-h-[50vh] overflow-y-auto">
+                        <div className="bg-blue-50 p-4 rounded shadow-lg z-50 transform transition-all duration-300 max-h-[50vh] overflow-y-auto">
                             <h2 className="text-xl font-bold mb-2">Schedule for {modalContent.date}</h2>
                             <ul>
                                 {modalContent.schedules.length > 0 ? (
@@ -127,7 +127,7 @@ export default function Schedule() {
                                     <li>No emplooyees scheduled</li>
                                 )}
                             </ul>
-                            <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onClick={() => setModalOpen(false)}>Close</button>
+                            <button className="mt-4 px-4 py-2 bg-blue-900 text-white rounded" onClick={() => setModalOpen(false)}>Close</button>
                         </div>
                      </div>
                 )}
