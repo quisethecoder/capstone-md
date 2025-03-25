@@ -62,8 +62,8 @@ export default function EmployeeScheduleForm({employeeId, onNewSchedules}){
 
 
     return(
-        <form onSubmit={handleSubmit} className="p-4 border border-gray-300 rounded mb-4">
-            <h2 className="text-xl font-bold mb-4">Schedule Your Onsite Days</h2> 
+        <form onSubmit={handleSubmit} className="p-4 border border-gray-300 shadow rounded mb-4 bg-blue-100">
+            <h2 className="text-2xl font-bold mb-4 text-blue-900">Schedule Your Onsite Days</h2> 
             {entries.map((entry, index) => (
             <div key={entry.id} className="flex items-center space-x-2 mb-1">
                 <input
@@ -90,17 +90,17 @@ export default function EmployeeScheduleForm({employeeId, onNewSchedules}){
                     <button
                     type="button"
                     onClick={() => handleRemoveRow(entry.id)}
-                    className="text-red-500 font-bold">-</button>
+                    className="text-red-500 border rounded p-2 bg-red-300 font-bold">-</button>
                 )}
                 {index === entries.length -1 && (
                     <button
                     type="button"
                     onClick={handleAddRow}
-                    className="text-green-500 font-bold">+</button>
+                    className="text-green-500 border p-2 rounded bg-green-100 font-bold">+</button>
                 )}
             </div>
             ))}
-            <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">submit</button>
+            <button type="submit" className="mt-4 w-full font-semibold py-2 bg-blue-900 text-white rounded hover:bg-blue-800 transition">Submit</button>
         </form>
     )
 }

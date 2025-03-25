@@ -15,16 +15,18 @@ export default function EmployeeProfile({ loggedInEmployee }) {
     const [refreshTrigger, setRefreshTrigger] = useState(0)
 
     const handleNewSchedules = (newSchedules) => {
-        setRefreshTrigger(prev => prev + 1)
+        setRefreshTrigger((prev) => prev + 1)
     }
 
     return (
-        <div >
-            <div >
-                <EmployeeScheduleForm employeeId={employeeId} onNewSchedules={handleNewSchedules} />
-            </div>
-            <div>
-                <EmployeeDaysOnsite employeeId={employeeId} refreshTrigger={refreshTrigger} />
+        <div className="max-w-7xl mx-auto p-4 bg-blue-50 pb-75">
+            <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4" >
+                <div className="md:w-1/3 pt-22">
+                    <EmployeeScheduleForm employeeId={employeeId} onNewSchedules={handleNewSchedules} />
+                </div>
+                <div className="md:w-2/3">
+                    <EmployeeDaysOnsite employeeId={employeeId} refreshTrigger={refreshTrigger} />
+                </div>
             </div>
         </div>
     )

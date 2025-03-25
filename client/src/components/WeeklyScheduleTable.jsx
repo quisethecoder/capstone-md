@@ -38,7 +38,7 @@ export default function WeeklyScheduleTable(){
                 const data = await response.json()
                 return data
             }catch (error){
-                console.error("Error fetching data for", isoDate, error)
+                console.error("Error fetching data for", localDateStr, error)
                 return[]
             }
         }
