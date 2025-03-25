@@ -4,9 +4,9 @@ import EmployeeScheduleForm from "./EmployeeScheduleForm";
 import Schedule from "./Schedule";
 
 
-export default function EmployeeProfile({loggedInEmployee}){
+export default function EmployeeProfile({ loggedInEmployee }) {
 
-    if(!loggedInEmployee){
+    if (!loggedInEmployee) {
         return <div>Please log in to view your profile</div>
     }
 
@@ -17,11 +17,15 @@ export default function EmployeeProfile({loggedInEmployee}){
     const handleNewSchedules = (newSchedules) => {
         setRefreshTrigger(prev => prev + 1)
     }
-    
-    return(
-        <div className="max-w-3xl mx-auto p-4">
-            <EmployeeScheduleForm employeeId={employeeId} onNewSchedules={handleNewSchedules}/>
-            <EmployeeDaysOnsite employeeId={employeeId} refreshTrigger={refreshTrigger}/>
+
+    return (
+        <div >
+            <div >
+                <EmployeeScheduleForm employeeId={employeeId} onNewSchedules={handleNewSchedules} />
+            </div>
+            <div>
+                <EmployeeDaysOnsite employeeId={employeeId} refreshTrigger={refreshTrigger} />
+            </div>
         </div>
     )
 }

@@ -16,7 +16,7 @@ export default function Nav({ loggedInManager, setLoggedInManager, loggedInEmplo
                         <img src={logo} alt="MD Scheduler" width={150}/>
                     </Link>
                 </div>
-                <ul className='hidden md:flex space-x-6 text-2xl'>
+                <ul className='hidden md:flex space-x-6 text-2xl font-normal'>
                     <li>
                         <Link to={"/"} className='hover:text-blue-600 text-blue-900 transition-colors'>
                             Home

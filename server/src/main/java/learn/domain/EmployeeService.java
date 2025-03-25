@@ -65,7 +65,7 @@ public class EmployeeService {
         }
 
         if (employee.getManager() == null || employee.getManager().getManagerId() <=0){
-            result.addErrorMessage("Manager ID is required", ResultType.INVALID);
+            result.addErrorMessage("Select a manager", ResultType.INVALID);
         }
 
         if(result.isSuccess()){
