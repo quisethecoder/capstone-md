@@ -17,12 +17,12 @@ POST http://localhost:8080/api/employees
 Content-Type: application/json
 
 {
-    "firstName": "Michael",
-    "lastName": "Jordan",
-    "username": "airjordan5",
-    "password": "belikemike23",
+    "firstName": "Bronny",
+    "lastName": "James",
+    "username": "bronny",
+    "password": "bronny",
     "manager": {
-        "managerId": 2
+        "managerId": 3
     }
 }
 

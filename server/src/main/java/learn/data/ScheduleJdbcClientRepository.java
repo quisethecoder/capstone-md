@@ -121,12 +121,14 @@ public class ScheduleJdbcClientRepository implements ScheduleRepository {
     public boolean update(Schedule schedule) {
         final String sql = """
                 update schedules set
-                schedule_date = ?
+                schedule_date = ?,
+                seat_id = ?
                 where schedule_id = ?;
                 """;
 
         int rowsAffected = client.sql(sql)
                 .param(schedule.getScheduleDate())
+                .param(schedule.getSeat().getSeatId())
                 .param(schedule.getScheduleId())
                 .update();
 
