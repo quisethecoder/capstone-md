@@ -109,5 +109,7 @@ insert into manager (first_name, last_name, username, `password`)
 -- where m.manager_id = 2;
 
 
+select first_name from employee;
+
 
 

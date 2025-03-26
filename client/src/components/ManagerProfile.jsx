@@ -1,15 +1,30 @@
+import ManagerCheckEmployeeOnSchedule from "./ManagerCheckEmployeeOnSchedule"
 import ManagerListOfEmployees from "./ManagerListOfEmployees"
+import SeatsList from "./SeatsList"
 
 
-export default function ManagerProfile({loggedInManager}){
+export default function ManagerProfile({ loggedInManager }) {
 
-    if(!loggedInManager){
-        return<div>Please log in as a manager to view profile</div>
+    if (!loggedInManager) {
+        return <div>Please log in as a manager to view profile</div>
     }
 
-    return(
-        <div>Manager profile is a work in progress
-            <ManagerListOfEmployees />
+
+    const managerId = loggedInManager.managerId;
+
+    return (
+        <div className="min-h-screen bg-blue-50 max-w-7xl mx-auto p-4"  >
+            <h1 className="text-3xl font-bold text-blue-900 mb-4">Welecome (Put Manager first name here)</h1>
+            <div className="flex flex-col md:flex-row gap-4">
+                <div className="md:w-1/3 space-y-4" >
+                    <SeatsList />
+                    <ManagerListOfEmployees managerId={managerId} />
+                </div>
+                <div className="md:w-2/3">
+                    <ManagerCheckEmployeeOnSchedule managerId={managerId} />
+                </div>
+
+            </div>
         </div>
     )
 }

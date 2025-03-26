@@ -31,7 +31,7 @@ Users can see all of their days on their page
 Manager has a list of schedule on their page
 Manager can see who has not put in days for their schedule
 a calander on the main page shows the schedule for everyone
-Manager can add and remove employees
+Manager can remove employees
 
 
 
