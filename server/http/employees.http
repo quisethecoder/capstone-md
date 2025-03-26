@@ -1,9 +1,9 @@
-GET http://localhost:8080/api/employees
+GET http://localhost:8080/api/employees/manager/list/3
 
 
 ###
 #happy path manager by id
-GET http://localhost:8080/api/employees/5
+GET http://localhost:8080/api/employees/15
 
 
 ###
@@ -17,10 +17,10 @@ POST http://localhost:8080/api/employees
 Content-Type: application/json
 
 {
-    "firstName": "Bronny",
-    "lastName": "James",
-    "username": "bronny",
-    "password": "bronny",
+    "firstName": "bhomas",
+    "lastName": "ticon",
+    "username": "bhomas",
+    "password": "bhomas",
     "manager": {
         "managerId": 3
     }

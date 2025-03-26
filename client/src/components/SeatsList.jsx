@@ -86,7 +86,7 @@ export default function SeatsList(){
         <div className="p-4 bg-blue-100 rounded shadow mb-4">
             <div className="flex flex-col md:flex-row gap-4 ">
             <h2 className="text-4xl font-bold text-blue-900">Seats List</h2>
-            <button onClick={openAddModal} className="mb-2 mt-2 ml-28 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition">
+            <button onClick={openAddModal} className="mb-5 mt-2 ml-26 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition">
                 Add Seat
             </button>
             </div>
@@ -145,11 +145,9 @@ export default function SeatsList(){
                             <button onClick={() => setConfirmDelete(null)} className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-400 transition">Cancel</button>
                             <button onClick={deleteSeat} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-400 transition">Confirm</button>
                         </div>
-
                     </div>
                 </div>
             )}
-
         </div>
     )
 } 

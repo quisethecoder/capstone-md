@@ -55,6 +55,24 @@ public class EmployeeJdbcClientRepository implements EmployeeRepository{
     }
 
     @Override
+    public List<Employee> listOfEmployeesForManager(int managerId) {
+        final String sql = """
+                select e.employee_id, e.first_name,
+                e.last_name, e.username, e.`password`, m.manager_id, m.first_name, m.last_name,
+                m.username, m.`password`
+                from employee e
+                join manager m on m.manager_id = e.manager_id
+                where m.manager_id = ?;
+                """;
+
+
+        return client.sql(sql)
+                .param(managerId)
+                .query(new EmployeeMapper())
+                .list();
+    }
+
+    @Override
     public Employee findById(int employeeId) {
         final String sql = """
                 select   e.employee_id,  e.first_name, e.last_name, e.username, e.password,

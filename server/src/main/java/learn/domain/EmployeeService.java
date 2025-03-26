@@ -29,6 +29,10 @@ public class EmployeeService {
         return repository.findById(employeeId);
     }
 
+    public List<Employee> listOfEmployeesForManager(int managerId){
+        return repository.listOfEmployeesForManager(managerId);
+    }
+
     public List<Employee> findEmployeesByManagerId(int managerId){
         return repository.findEmployeesByManagerId(managerId);
     }
