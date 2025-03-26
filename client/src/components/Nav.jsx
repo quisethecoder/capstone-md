@@ -10,7 +10,7 @@ export default function Nav({ loggedInManager, setLoggedInManager, loggedInEmplo
 
     return (
         <header className="bg-blue-100  shadow-md">
-            <nav className='max-w-7xl mx-auto flex items-center justify-between px-6 py-1'>
+            <nav className='max-w-7xl mx-auto flex items-center justify-between px-7 py-1'>
                 <div className='flex items-center'>
                     <Link to={"/"} className='flex items-center space-x-2'>
                         <img src={logo} alt="MD Scheduler" width={150}/>

@@ -10,6 +10,8 @@ public interface EmployeeRepository {
 
     public List<Employee> findEmployeesByManagerId(int managerId);
 
+    public List<Employee> listOfEmployeesForManager(int managerId);
+
     public Employee findById(int employeeId);
 
     public Employee findByUsername(String username);

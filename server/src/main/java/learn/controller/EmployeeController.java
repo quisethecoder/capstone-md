@@ -42,6 +42,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
+    @GetMapping("/manager/list/{id}")
+    public List<Employee> listOfEmployeesForManager(@PathVariable int id){
+        return service.listOfEmployeesForManager(id);
+    }
+
     @GetMapping("/manager/{id}")
     public List<Employee> findEmployeesByManagerId(@PathVariable int id){
         return service.findEmployeesByManagerId(id);

@@ -99,17 +99,14 @@ insert into manager (first_name, last_name, username, `password`)
 			
 
   
--- select sc.schedule_id, sc.schedule_date, se.seat_id, se.seat, e.employee_id, e.first_name,
+
+
+-- select e.employee_id, e.first_name,
 -- e.last_name, e.username, e.`password`, m.manager_id, m.first_name, m.last_name,
 -- m.username, m.`password` 
--- from schedules sc
--- join employee e on e.employee_id = sc.employee_id
--- join seats se on se.seat_id = sc.seat_id
+-- from employee e 
 -- join manager m on m.manager_id = e.manager_id
--- where m.manager_id = 2;
-
-
-select first_name from employee;
+-- where m.manager_id = 3;
 
 
 
