@@ -107,9 +107,9 @@ export default function EmployeeDaysOnsite({employeeId, refreshTrigger}){
 
 
     return(
-        <div className="mt-8">
+        <div className="mt-8 ml-8 mr-20">
             <h2 className="text-4xl text-blue-900 font-bold mb-4"> My Onsite Days</h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
                {schedules.map((schedule) =>{
                 const {weekday, formattedDate} = formatDate(schedule.scheduleDate)
                 return(

@@ -96,7 +96,7 @@ export default function Schedule() {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-blue-50 pb-20 pt-15">
+        <div className="min-h-screen flex items-center justify-center bg-blue-50 pb-20 pt-10">
             <div className="w-full max-w-4xl p-4 bg-indigo-200 shadow-lg rounded">
                 <h1 className="text-2xl font-bold text-center mb-4">
                     {today.toLocaleDateString("default", {month: "long"})} {year}

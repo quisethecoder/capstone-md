@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EmployeeDaysOnsite from "./EmployeeDaysOnsite";
 import EmployeeScheduleForm from "./EmployeeScheduleForm";
-import Schedule from "./Schedule";
+
 
 
 export default function EmployeeProfile({ loggedInEmployee }) {
@@ -19,15 +19,18 @@ export default function EmployeeProfile({ loggedInEmployee }) {
     }
 
     return (
-        <div className="min-h-screen max-w-7xl mx-auto p-4 bg-blue-50">
+        <div className="min-h-screen bg-blue-50 pr-20">
+        <div className=" max-w-7xl mx-auto p-4">
             <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4" >
+            <div className="md:w-2/3">
+                    <EmployeeDaysOnsite employeeId={employeeId} refreshTrigger={refreshTrigger} />
+                </div>
                 <div className="md:w-1/3 pt-22">
                     <EmployeeScheduleForm employeeId={employeeId} onNewSchedules={handleNewSchedules} />
                 </div>
-                <div className="md:w-2/3">
-                    <EmployeeDaysOnsite employeeId={employeeId} refreshTrigger={refreshTrigger} />
-                </div>
+                
             </div>
+        </div>
         </div>
     )
 }
