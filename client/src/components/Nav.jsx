@@ -30,7 +30,7 @@ export default function Nav({ loggedInManager, setLoggedInManager, loggedInEmplo
                     {(loggedInManager || loggedInEmployee) && (
                         <>
                             <li>
-                                <Link to={"/Profile"} className='hover:text-blue-600 text-blue-900 transition-colors'>
+                                <Link to={"/profile"} className='hover:text-blue-600 text-blue-900 transition-colors'>
                                     Profile
                                 </Link>
                             </li>

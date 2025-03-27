@@ -33,10 +33,14 @@ function generateCalendarDays(year, month) {
 
 
 export default function Schedule() {
+    const today = new Date()
     const [scheduleData, setScheduleData] = useState({})
     const [modalOpen, setModalOpen] = useState(false)
     const [modalContent, setModalContent] = useState(null)
+    const [currentYear, setCurrentYear] = useState(today.getFullYear())
+    const [currentMonth, setCurrentMonth] = useState(today.getMonth())
 
+    const days = generateCalendarDays(currentYear, currentMonth)
     const totalSeats = 5
 
     useEffect(() => {
@@ -87,22 +91,52 @@ export default function Schedule() {
         )
     }
 
-    const today = new Date()
-    const year = today.getFullYear()
-    const month = today.getMonth()
-    const days = generateCalendarDays(year, month)
-    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+   
+   const headerDate = new Date(currentYear, currentMonth, 1)
+   const monthHeader = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    year: "numeric",
+   }).format(headerDate)
+
+   const previousMonth = () => {
+    if(currentMonth === 0){
+        setCurrentYear((prev) => prev - 1)
+        setCurrentMonth(11)
+    }else{
+        setCurrentMonth((prev) => prev - 1)
+    }
+   }
+
+   const nextMonth = () => {
+    if(currentMonth === 11){
+        setCurrentYear((prev) => prev + 1)
+        setCurrentMonth(0)
+    }else{
+        setCurrentMonth((prev) => prev + 1)
+    }
+   }
 
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-blue-50 pb-20 pt-10">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50 pb-5 pt-7">
             <div className="w-full max-w-4xl p-4 bg-indigo-200 shadow-lg rounded">
-                <h1 className="text-2xl font-bold text-center mb-4">
-                    {today.toLocaleDateString("default", {month: "long"})} {year}
+                <div className="flex items-center justify-between mb-4">
+                    <div className="w-1/4"></div>
+                <h1 className="text-5xl text-blue-900 font-bold text-center flex-1 mr-29 mb-4">
+                    {monthHeader}
                 </h1>
+                <button onClick={previousMonth} className="px-2 py-2 text-indigo-200 text-xl bg-blue-900 rounded shadow-lg">
+                    &larr;
+                </button>
+                <button onClick={nextMonth} className="px-2 py-2 text-indigo-200 text-xl bg-blue-900 rounded shadow-lg ml-1 mr-1">
+                    &rarr;
+                </button>
+                </div>
+
+
                 <div className="grid grid-cols-7 text-center font-bold">
-                    {weekdays.map((day, idx) => (
+                    {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day, idx) => (
                         <div key={idx} className="p-2">
                             {day}
                         </div>
@@ -114,7 +148,7 @@ export default function Schedule() {
                 {modalOpen && modalContent && (
                     <div className="fixed inset-0 flex items-center justify-center z-50">
                         <div className="absolute inset-0 bg-black opacity-50" onClick={() => setModalOpen(false)}></div>
-                        <div className="bg-blue-50 p-4 rounded shadow-lg z-50 transform transition-all duration-300 max-h-[50vh] overflow-y-auto">
+                        <div className="bg-blue-100 p-4 rounded shadow-lg z-50 transform transition-all duration-300 max-h-[50vh] overflow-y-auto">
                             <h2 className="text-xl font-bold mb-2">Schedule for {modalContent.date}</h2>
                             <ul>
                                 {modalContent.schedules.length > 0 ? (

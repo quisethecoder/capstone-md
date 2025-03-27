@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function getLocalDateString(date){
     const tzOffset = date.getTimezoneOffset() * 60000;
@@ -28,10 +29,19 @@ function getDaySuffix(day){
 
 export default function WeeklyScheduleTable(){
     const [weeklySchedules, setWeeklySchedules] = useState([])
+    const [weekStartDate, setWeekStartDate] = useState(null)
+
+
+    useEffect(() => {
+        const today = new Date()
+        const offset = today.getDay() === 0 ? -6 : 1 - today.getDay()
+        const monday = new Date(today)
+        monday.setDate(today.getDate() + offset)
+        setWeekStartDate(monday)
+    }, [])
 
     useEffect(() => {
         const fetchDataForDay = async (date) => {
-
             const localDateStr = getLocalDateString(date)
             try{
                 const response = await fetch(`http://localhost:8080/api/schedule/date/${localDateStr}`)
@@ -45,28 +55,56 @@ export default function WeeklyScheduleTable(){
 
         const getWeeklySchedules = async () => {
             const schedules = []
-            const startDate = new Date();
             for(let i = 0; i < 5; i++){
-                const currentDate = new Date(startDate)
-                currentDate.setDate(startDate.getDate() + i)
+                const currentDate = new Date(weekStartDate)
+                currentDate.setDate(weekStartDate.getDate() + i)
                 const data = await fetchDataForDay(currentDate)
                 schedules.push({date: currentDate, schedules: data})
             }
             setWeeklySchedules(schedules)
         }
         getWeeklySchedules()
-    }, [])
+    }, [weekStartDate])
 
-    const monthHeader = new Intl.DateTimeFormat("en-US",{
-        month: "long",
-        year: "numeric"
-    }).format(new Date())
+    let monthHeader = ""
+    if(weekStartDate){
+        const mondayHeader = new Intl.DateTimeFormat("en-us", {
+            month: "long",
+            year: "numeric",
+        }).format(weekStartDate)
+        
+        const friday = new Date(weekStartDate)
+        friday.setDate(weekStartDate.getDate() + 4)
+        
+        const fridayHeader = new Intl.DateTimeFormat("en-US", {
+            month: "long",
+            year: "numeric",
+        }).format(friday)
 
+        monthHeader = mondayHeader === fridayHeader ? mondayHeader : `${mondayHeader}/${fridayHeader}`;
+    }
+
+   
 
 
     return(
         <div className="p-4 bg-blue-50 mt-5 cursor-default">
-            <h1 className="text-7xl font-bold ml-3 text-blue-900">{monthHeader}</h1>
+            <div className="flex items-center justify-between">
+            <h1 className="text-5xl font-bold ml-3 text-blue-900">{monthHeader}</h1>
+            <div className="mr-8">
+            <button onClick={() => {
+                const newMonday = new Date(weekStartDate)
+                newMonday.setDate(newMonday.getDate() - 7)
+                setWeekStartDate(newMonday)
+            }} className="px-2 py-0 text-blue-100 text-3xl bg-blue-900 rounded shadow-lg pb-1">&larr;</button>
+            <button onClick={() => {
+                const newMonday = new Date(weekStartDate)
+                newMonday.setDate(newMonday.getDate() + 7)
+                setWeekStartDate(newMonday)
+
+            }} className="px-2 py-0 text-blue-100 text-3xl bg-blue-900 rounded shadow-lg pb-1 ml-1">&rarr;</button>
+            </div>
+            </div>
 
             <div className="grid grid-cols-5 gap-4">
                 {weeklySchedules.map((dayData, index) => {
@@ -79,7 +117,7 @@ export default function WeeklyScheduleTable(){
 
                     return(
                         <div key={index} className="p-4">
-                            <div className="text-7xl font-extrabold text-blue-900">
+                            <div className="text-6xl font-extrabold text-blue-900">
                                 {dayNumber}
                                 <span className="text-lg align-bottom ml-1">{daySuffix}</span>
                             </div>

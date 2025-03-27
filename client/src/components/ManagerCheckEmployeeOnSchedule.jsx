@@ -7,6 +7,12 @@ import { useEffect, useState } from "react"
 export default function ManagerCheckEmployeeOnSchedule({managerId}){
     const [employees, setEmployees] = useState([])
     const [schedules, setSchedules] = useState([])
+    
+    const today = new Date()
+    const [filterMonth, setFilterMonth] = useState(today.getMonth())
+    const [filterYear, setFilterYear] = useState(today.getFullYear())
+
+
 
     useEffect(() => {
         fetch(`http://localhost:8080/api/employees/manager/list/${managerId}`)
@@ -20,14 +26,11 @@ export default function ManagerCheckEmployeeOnSchedule({managerId}){
         .catch((err) => console.error("Error fetching schedules", err))
     }, [managerId])
 
-    const today = new Date()
-    const currentMonth = today.getMonth()
-    const currentYear = today.getFullYear()
-
     const schedulesThisMonth = schedules.filter((s) => {
         const d = new Date(s.scheduleDate)
-        return d.getMonth() === currentMonth && d.getFullYear() === currentYear
+        return d.getMonth() === filterMonth && d.getFullYear() === filterYear
     })
+
 
     const scheduleEmployeeIds = new Set(
         schedulesThisMonth.map((s) => s.employee.employeeId)
@@ -41,16 +44,45 @@ export default function ManagerCheckEmployeeOnSchedule({managerId}){
     !scheduleEmployeeIds.has(e.employeeId)
     )
 
-    const monthYearHeader = today.toLocaleDateString("en-US", {
+    const headerDate = new Date(filterYear, filterMonth, 1)
+    const monthYearHeader = new Intl.DateTimeFormat("en-US", {
         month: "long",
         year: "numeric",
-    })
+    }).format(headerDate)
+
+    const previousMonth = () => {
+        if(filterMonth === 0){
+            setFilterYear(filterYear - 1)
+            setFilterMonth(11)
+        }else{
+            setFilterMonth(filterMonth - 1)
+        }
+    }
+
+    const nextMonth = () => {
+        if(filterMonth === 11){
+            setFilterYear(filterYear + 1)
+            setFilterMonth(0)
+        }else{
+            setFilterMonth(filterMonth + 1)
+        }
+    }
 
 
 
     return (
-        <div className="p-4 bg-blue-100 rounded shadow mb-4 cursor-default">
-            <h2 className="text-3xl font-bold mb-7 text-blue-900">Employees Scheduled for {monthYearHeader}</h2>
+        <div className="p-4 bg-indigo-200 rounded shadow  cursor-default">
+            <div className="flex item-center justify-between mb-4">
+            <h2 className="text-3xl font-bold mb-1 text-blue-900">Employees Scheduled for {monthYearHeader}</h2>
+            <div className="flex space-x-1">
+                <button onClick={previousMonth} className="px-2 py-0 bg-blue-900 text-indigo-100 rounded hover:bg-blue-800 transition text-xl">
+                    &larr;
+                </button>
+                <button onClick={nextMonth} className="px-2 py-0 bg-blue-900 text-indigo-100 rounded hover:bg-blue-800 transition text-xl">
+                    &rarr;
+                </button>  
+            </div>
+            </div>
             <div className="grid grid-cols-2 gap-4">
                 <div>
                     <h3 className="text-lg font-semibold mb-2">Scheduled</h3>
