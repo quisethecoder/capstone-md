@@ -23,21 +23,12 @@ export default function EmployeeDaysOnsite({employeeId, refreshTrigger}){
     const [editedSchedule, setEditedSchedule] = useState(null)
 
     useEffect(() => {
-        if(!employeeId){
-            console.log("employeeId is undefined")
-            return;
-        }
         fetch(`http://localhost:8080/api/schedule/employee/${employeeId}`)
         .then(res => res.json())
         .then(data => {
             console.log("Fetched data: ", data)
-            if(Array.isArray(data)){
                 const sorted = data.sort((a,b) => new Date(a.scheduleDate) - new Date(b.scheduleDate))
                 setSchedules(sorted) 
-            }else{
-                console.error("Expected an array but got:", data)
-            }
-            
         })
         .catch(err => console.error("Error fetching employee schedules", err))
     }, [employeeId, refreshTrigger])
