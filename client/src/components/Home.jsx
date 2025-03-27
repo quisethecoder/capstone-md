@@ -11,11 +11,9 @@ export default function Home() {
                 <TodayTomorTable />
             </div>
             <div className="md:w-3/4">
+                {/* <HuddleLeader /> */}
                 <WeeklyScheduleTable />
             </div>
-
-            {/* <HuddleLeader/> */}
-
         </div>
 
 
