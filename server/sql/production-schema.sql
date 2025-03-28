@@ -97,7 +97,6 @@ insert into manager (first_name, last_name, username, `password`)
 			('2025-04-09', 3, 2),
 			('2025-04-10', 3, 2);
 			
-
   
 
 

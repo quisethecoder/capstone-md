@@ -41,6 +41,7 @@ export default function Schedule() {
     const [currentMonth, setCurrentMonth] = useState(today.getMonth())
 
     const days = generateCalendarDays(currentYear, currentMonth)
+    
     const totalSeats = 5
 
     useEffect(() => {
