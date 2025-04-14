@@ -1,0 +1,114 @@
+GET http://localhost:8080/api/employees/manager/list/3
+
+
+###
+#happy path manager by id
+GET http://localhost:8080/api/employees/15
+
+
+###
+#manager doesn't exist
+GET http://localhost:8080/api/employees/999
+
+
+###
+#happy path
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+    "firstName": "Carmelo",
+    "lastName": "Anthony",
+    "username": "carmelo",
+    "password": "carmelo",
+    "manager": {
+        "managerId": 3
+    }
+}
+
+###
+#blank username
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+    "firstName": "Michael",
+    "lastName": "Jordan",
+    "username": "",
+    "password": "passwordtest10",
+    "manager": {
+        "managerId": 2
+    }
+}
+
+###
+#blank password
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+    "firstName": "Mike",
+    "lastName": "Belt",
+    "username": "jbelfort1",
+    "password": "",
+    "manager": {
+        "managerId": 2
+    }
+}
+
+
+
+
+###
+#happy path
+POST http://localhost:8080/api/employees/login
+Content-Type: application/json
+
+{
+    "firstName": "Michael",
+    "lastName": "Jordan",
+    "username": "airjordan1",
+    "password": "belikemike23",
+    "manager": {
+        "managerId": 2
+    }
+}
+
+
+###
+#non existing employee
+POST http://localhost:8080/api/employees/login
+Content-Type: application/json
+
+{
+    "firstName": "Mike",
+    "lastName": "Jordan",
+    "username": "airjordan2",
+    "password": "belikemike23",
+    "manager": {
+        "managerId": 2
+    }
+}
+
+
+
+###
+#wrong password for existing emplqoyee
+POST http://localhost:8080/api/employees/login
+Content-Type: application/json
+
+{
+    "firstName": "Michael",
+    "lastName": "Jordan",
+    "username": "airjordan1",
+    "password": "belikemike24",
+    "manager": {
+        "managerId": 2
+    }
+}
+
+
+
+
+
+

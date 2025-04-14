@@ -1,0 +1,91 @@
+GET http://localhost:8080/api/managers
+
+
+###
+#happy path manager by id
+GET http://localhost:8080/api/managers/3
+
+
+###
+#manager doesn't exist
+GET http://localhost:8080/api/managers/999
+
+
+###
+#happy path
+POST http://localhost:8080/api/managers
+Content-Type: application/json
+
+{
+    "firstName": "Jordan",
+    "lastName": "Belfort",
+    "username": "jbelfort1",
+    "password": "passwordtest10"
+}
+
+###
+#blank username
+POST http://localhost:8080/api/managers
+Content-Type: application/json
+
+{
+    "firstName": "Jordan",
+    "lastName": "Belfort",
+    "username": "",
+    "password": "passwordtest10"
+}
+
+###
+#blank password
+POST http://localhost:8080/api/managers
+Content-Type: application/json
+
+{
+    "firstName": "Jordan",
+    "lastName": "Belfort",
+    "username": "jbelfort1",
+    "password": ""
+}
+
+
+
+
+###
+#happy path
+POST http://localhost:8080/api/managers/login
+Content-Type: application/json
+
+{
+   "firstName": "Jordan",
+    "lastName": "Belfort",
+    "username": "jbelfort1",
+    "password": "passwordtest10"
+}
+
+
+###
+#non existing manager
+POST http://localhost:8080/api/managers/login
+Content-Type: application/json
+
+{
+   "firstName": "Marcus",
+    "lastName": "Camby",
+    "username": "Camby1",
+    "password": "passwordtest11"
+}
+
+
+###
+#wrong password for existing manager
+POST http://localhost:8080/api/managers/login
+Content-Type: application/json
+
+{
+   "firstName": "Jordan",
+    "lastName": "Belfort",
+    "username": "jbelfort1",
+    "password": "passwordtest1"
+}
+
+
