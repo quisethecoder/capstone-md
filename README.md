@@ -1,152 +1,57 @@
-# capstone-md
+🗓️ MD Scheduler
+A full-stack scheduling application built with React.js, Tailwind CSS, Java, and Spring Boot. Designed to streamline employee scheduling with role-based access and real-time updates.
 
-# Technologies
-Java/Spring
-React.js
-tailwind.css
+🚀 Features
+✅ Logged-In Users
+Schedule Management: Select, edit, or delete workdays.
 
-https://tailwindcss.com/
+Capacity Control: Limit of 4 users per day; prevents overbooking.
 
+Date Restrictions: Cannot select past dates.
+GitHub Docs
 
+🔒 Logged-Out Users
+Authentication: Sign-in functionality.
 
+Schedule Overview: View current and next day's schedule.
+Gist
++2
+GitHub
++2
+GitHub
++2
+GitHub Docs
++3
+FreeCodeCamp
++3
+YouTube
++3
 
+👨‍💼 Manager Capabilities
+Employee Oversight: View full schedule and identify unscheduled employees.
 
-# Scheduler App
+User Management: Remove employees from the schedule.
 
-While Logged In
+Calendar View: Comprehensive monthly schedule display.
 
-User logout out
-user can schedule days they want on site
-User can delete or edit their days
-once seats are filled user cannot pick that day
-User cannot change date that has past
-There can only be 4 people per day
+🎯 Stretch Goals
+PTO Requests: Employees can request paid time off; managers can approve.
 
+Shift Swapping: Employees can request to swap days; manager approval required.
 
-While Logged Out
+Huddle Leaders: Display current and upcoming week's huddle leaders.
+Gist
++2
+GitHub
++2
+GitHub Docs
++2
 
-User Sign in 
-main page has a section that shows the people that should be on site today and the next day
-Users can see all of their days on their page
-Manager has a list of schedule on their page
-Manager can see who has not put in days for their schedule
-a calander on the main page shows the schedule for everyone
-Manager can remove employees
+🛠️ Tech Stack
+Frontend: React.js, Tailwind CSS
 
+Backend: Java, Spring Boot
 
+Database: MySQL
 
-Stretch Goals
-
-Users can request pto days
-user can request to swap days(Manager must approve)
-Manager accepts PTO
-Manager has a request section for swapping days
-manager has a request section for accepting pto
-calander on main page shows scheduled employee pto for the month
-main page shows the huddle leaders for current week and next week
-Employee can see pto on their page once manager accepts
-employee can see pto on main page calander once manager accepts
-Future months should be locked until manager opens it up 
-
-
-
-
-
-# Database tables for scheduler
-
-Manager table
-employee table
-timeoff table
-schedule table
-seats
-
-
-
-# http
-
-employee.http
-manager.http
-schedule.http
-pto.http
-seat.http
-
-
-
-
-
-# Controller
-
-SecretSigningKey
-ManagerController
-EmployeeController
-PtoController
-ScheduleController
-SeatController
-
-
-
-
-
-
-
-# Data Layer
-
-ManagerJdbcClientRepository
-ManagerMapper
-ManagerRepository
-EmployeeJdbcClientRepository
-EmployeeMapper
-EmployeeRepository
-PtoJdbcClientRepository
-PtoMapper
-PtoRepository
-ScheduleJdbcClientRepository
-ScheduleMapper
-ScheduleRepository
-SeatsJdbcClientRepository
-SeatsMapper
-SeatsRepository
-
-
-
-# Domain Layer
-
-ResultType
-Results
-ManagerService
-EmployeeService
-PTOService
-ScheduleService
-SeatsService
-
-
-
-# Models
-Manager
-Employee
-Pto
-Schedule
-Seat
-
-
-
-# React Components
-Nav.jsx
-manager.jsx
-EmployeeList
-EmloyeeTable
-ScheduleTable
-ScheduleForm
-ptolist
-ptoform
-protable
-loginform
-registerform
-
-
-
- 
-
- 
-
- 
+Authentication: JWT
