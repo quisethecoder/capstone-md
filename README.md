@@ -1,4 +1,5 @@
-🗓️ MD Scheduler
+# 🗓️ MD Scheduler
+
 A full-stack scheduling application built with React.js, Tailwind CSS, Java, and Spring Boot. Designed to streamline employee scheduling with role-based access and real-time updates.
 
 🚀 Features
