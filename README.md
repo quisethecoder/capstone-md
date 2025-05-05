@@ -9,7 +9,7 @@ A full-stack scheduling application built with React.js, Tailwind CSS, Java, and
 
 Schedule Management: Select, edit, or delete workdays.
 
-Capacity Control: Limit of 4 users per day; prevents overbooking.
+Capacity Control: Limit users to seats per day; prevents overbooking.
 
 Date Restrictions: Cannot select past dates.
 
@@ -36,7 +36,7 @@ YouTube
 
 Employee Oversight: View full schedule and identify unscheduled employees.
 
-User Management: Remove employees from the schedule.
+User Management: Remove employees from list.
 
 Calendar View: Comprehensive monthly schedule display.
 
